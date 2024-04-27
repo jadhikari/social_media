@@ -1,8 +1,30 @@
 {% extends 'user/base.html' %}
 {% block body %}
-    <form method="POST">
+<h1 class="text-2xl m-10">Reguster User</h1>
+<div class="container py-5 ">
+    <form method="POST" class="bg-white shadow-md m-10 w-2/5 rounded px-8 pt-6 pd-8 mb-4">
         {%csrf_token%}
-        {{form.as_p}}
-        <button type="submit">Submit</button>
+        <div class="mb-3">
+            <label for="" class="block text-gray-700 text-sm font-bold mb-2">User Name</label>
+            <div class="shadow text-gray-700 appearance-none border rounded py-2 px-3 mr-10">{{form.username}}</div>
+        </div>
+        <div class="mb-3">
+            <label for="" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+            <div class="shadow text-gray-700 appearance-none border rounded py-2 px-3 mr-10">{{form.email}}</div>
+        </div>
+        <div class="mb-3">
+            <label for="" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+            <div class="shadow text-gray-700 appearance-none border rounded py-2 px-3 mr-10">{{form.password1}}</div>
+        </div>
+        <div class="mb-3">
+            <label for="" class="block text-gray-700 text-sm font-bold mb-2">Confirm Password</label>
+            <div class="shadow text-gray-700 appearance-none border rounded py-2 px-3 mr-10">{{form.password2}}</div>
+        </div>
+        
+        <button type="submit" class="text-white bg-green-500 px-5 py-2 mb-3">Submit</button>
     </form>
+    
+</div>
+
+
 {% endblock %}
