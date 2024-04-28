@@ -10,7 +10,8 @@ from post.models import Post
 def index(request):
     current_user = request.user
     posts = Post.objects.filter(user = current_user)
-    return render(request, 'user/index.html',{'posts':posts})
+    profile = Profile.objects.filter(user=current_user).first()
+    return render(request, 'user/index.html',{'posts':posts,'profile':profile})
 
 
 def register(request):
@@ -20,7 +21,7 @@ def register(request):
             new_user = form.save(commit= False)
             new_user.save()
             Profile.objects.create(user = new_user)
-            return redirect('login')
+            return redirect('user:login')
     else:
         form = RegistrationForm()
     return render(request, 'user/register.html', {'form': form})
@@ -34,7 +35,7 @@ def edit(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            return redirect('index')
+            return redirect('user:index')
     else:
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(instance=request.user.profile)

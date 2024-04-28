@@ -6,6 +6,7 @@
     <meta name="viewport" content="width={device-width}, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'user/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'user/style.css' %}">
 </head>
 <body>
 
@@ -14,7 +15,7 @@
             <div class="flex justify-between">
                 <!-- website logo -->
                 <div>   
-                    <a class="flex" href="#">
+                    <a class="flex" href="{% url 'user:index' %}">
                         <img class="h-12 w-12 mr-2" src="{% static 'user/images/logo.png' %}" alt="">
                         <span class="font-semibold text-lg text-gray-500 ">Photo App</span>
                     </a>
@@ -22,12 +23,12 @@
                 <!-- website item -->
                 <div class="space-x-1">
                     {% if request.user.is_authenticated %}
-                    <a class="py-4 px-2 text-gray-500 font-semibold" href="{% url 'logout' %}">Logout</a>
-                    <a href="{% url 'password_change_form' %}">Change Password</a>
+                    <a class="py-4 px-2 text-gray-500 font-semibold" href="{% url 'user:logout' %}">Logout</a>
+                    <a href="{% url 'user:password_change_form' %}">Change Password</a>
                     {% else %}
-                    <a class="py-4 px-2 text-gray-500 font-semibold" href="{% url 'login' %}">Login</a>
+                    <a class="py-4 px-2 text-gray-500 font-semibold" href="{% url 'user:login' %}">Login</a>
                     {% endif %}
-                    <a class="py-4 px-2 text-gray-500 font-semibold" href="">Link1</a>
+                    <a class="py-4 px-2 text-gray-500 font-semibold" href="{% url 'post:create' %}">Post</a>
                 </div>
             </div>
         </div>
